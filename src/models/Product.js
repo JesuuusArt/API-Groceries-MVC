@@ -1,8 +1,19 @@
-import Product from "../models/Product.js";
+import { model, Schema } from 'mongoose';
 
-const productsDao = {};
-productsDao.getAll = async () => {
-    return await Product.find();
-}
+const productSchema = new Schema({
+    Barcode:{
+        require: true,
+        unique: true,
+        type: String
+    },
+    Description: String,
+    Brand: Number,
+    Price: Number,
+    Stock: Number,
+    Expire_date: Number
+},{
+    versionKey: false,
+    timestamps: true
+});
 
-export default productsDao;
+export default model('product', productSchema);
