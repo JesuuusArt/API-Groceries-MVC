@@ -1,10 +1,10 @@
 import { model, Schema } from 'mongoose';
 
 const employeeSchema = new Schema({
-    employee_number: {
+    employee_numer: {
         require: true,
         unique: true,
-        type: String
+        type: Number
     },
     name: String,
     lastname: String,

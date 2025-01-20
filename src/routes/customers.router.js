@@ -3,5 +3,6 @@ import customersController from "../controller/customers.controller.js";
 const router = Router();
 
 router.get("/getAll", customersController.getAll);
+router.get("/getOne/:customer_number", customersController.getOne);
 
 export default router;

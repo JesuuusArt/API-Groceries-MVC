@@ -16,4 +16,30 @@ employeesController.getAll = (req, res) => {
         );
 }
 
+employeesController.getOne = (req, res) => {
+    console.log(req.params.employee_number);
+    employeesDao.getOne(req.params.employee_number)
+    .then((employee) => {
+        console.log(employee)
+        if(employee != null) {
+            res.json({
+                data: employee
+            });
+        } else {
+            res.json({
+                data: {
+                    "message": "Employee not found"
+                }
+            });
+        }
+    })
+    .catch((error) => {
+        res.json({
+            data: {
+                "message": (error)
+            }
+        });
+    });
+}
+
 export default employeesController;
