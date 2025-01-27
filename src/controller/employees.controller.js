@@ -42,4 +42,61 @@ employeesController.getOne = (req, res) => {
     });
 }
 
+employeesController.insert = (req, res) => {
+    employeesDao.insert(req.body)
+    .then((response) => {
+        res.json({
+            data: {
+                "message": "Employee inserted successfully",
+                "employee": response
+            }
+        });
+    })
+    .catch((error) => {
+        res.json({
+            data: {
+                "message": (error)
+            }
+        });
+    });
+}
+
+employeesController.updateOne = (req, res) => {
+    employeesDao.updateOne(req.body, req.params.employee_number)
+    .then((result) => {
+        res.json({
+            data: {
+                "message": "Employee updated successfully",
+                "result": result
+            }
+        });
+    })
+    .catch((error) => {
+        res.json({
+            data: {
+                "message": (error)
+            }
+        });
+    });
+}
+
+employeesController.deleteOne = (req, res) => {
+    employeesDao.deleteOne(req.params.employee_number)
+    .then((result) => {
+        res.json({
+            data: {
+                "message": "Employee deleted successfully",
+                "result": result
+            }
+        });
+    })
+    .catch((error) => {
+        res.json({
+            data: {
+                "message": (error)
+            }
+        });
+    });
+}
+
 export default employeesController;

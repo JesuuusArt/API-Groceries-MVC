@@ -34,10 +34,67 @@ customersController.getOne = (req, res) => {
         .catch((error) =>
             res.json({
                 data: {
-                    "message": (error)
+                    "message": error
                 }
             })
         );
+}
+
+customersController.insert = (req, res) => {
+    customersDao.insert(req.body)
+    .then((response) => {
+        res.json({
+            data: {
+                "message": "Customer inserted succesfully",
+                "customer": response
+            }
+        })
+    })
+    .catch((error) => {
+        res.json({
+            data: {
+                "message": (error)
+            }
+        })
+    })
+}
+
+customersController.updateOne = (req, res) => {
+    customersDao.updateOne(req.body, req.params.customer_number)
+    .then((result) => {
+        res.json({
+            data:{
+                "message": "Customer updated succesfully",
+                result: result
+            }
+        })
+    })
+    .catch((error) => {
+        res.json({
+            data:{
+                "message": error
+            }
+        })
+    })
+}
+
+customersController.deleteOne = (req, res) => {
+    customersDao.deleteOne(req.params.customer_number)
+    .then((result) => {
+        res.json({
+            data: {
+                "message": "Customer deleted succesfully",
+                "result": result
+            }
+        })
+    })
+    .catch((error) => {
+        res.json({
+            data: {
+                "message": error
+            }
+        })
+    })
 }
 
 export default customersController;
