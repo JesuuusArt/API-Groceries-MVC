@@ -1,16 +1,17 @@
 import { model, Schema } from 'mongoose';
 
 const productSchema = new Schema({
-    Barcode:{
+    barcode:{
         require: true,
         unique: true,
         type: String
     },
-    Description: String,
-    Brand: Number,
-    Price: Number,
-    Stock: Number,
-    Expire_date: Number
+    description: String,
+    brand: String,
+    price: Number,
+    cost: Number, 
+    stock: Number,
+    expire_date: Date
 },{
     versionKey: false,
     timestamps: true

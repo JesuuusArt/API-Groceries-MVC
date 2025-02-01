@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar</title>
+</head>
+
+<body>
+    <div role="page" class="products">
+        <div data-role="header" style="overflow:hidden">
+            <h1>Abarrotes App</h1>
+            <a href="#" data-icon="gear" class="ui-btn-right">Options</a>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#products">Productos</a></li>
+                    <li><a href="employees">Empleados</a></li>
+                    <li><a href="customers">Clientes</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <form action="/groceries/products/updateOne/<%= product.barcode %>" method="POST">
+            <div class="card">
+                <div class="card-body">
+                    <label for="txt_barcode">Codigo de barras:</label>
+                    <input type="text" name="barcode" id="txt_barcode" value="<%= product.barcode %>">
+
+                    <label for="txt_description">Descripcion:</label>
+                    <input type="text" name="description" id="txt_description" value="<%= product.description %>">
+
+                    <label for="txt_brand">Marca:</label>
+                    <input type="text" name="brand" id="txt_brand" value="<%= product.brand %>">
+
+                    <label for="txt_price">Precio:</label>
+                    <input type="number" name="price" id="txt_price" value="<%= product.price %>">
+
+                    <label for="txt_cost">Costo:</label>
+                    <input type="number" name="cost" id="txt_cost" value="<%= product.cost %>">
+
+                    <label for="txt_stock">Existencias:</label>
+                    <input type="number" name="stock" id="txt_stock" value="<%= product.stock %>">
+
+                    <label for="txt_expire_date">Fecha de expiracion:</label>
+                    <input type="date" name="expire_date" id="txt_expire_date" value="<%= product.expire_date %>">
+
+                    <button class="ui-btn ui-shadow">Actualizar</button>
+                </div>
+
+            </div>
+</body>
+
+</html>

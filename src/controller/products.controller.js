@@ -5,9 +5,10 @@ productsController.getAll = (req, res) => {
     productsDao
         .getAll()
         .then((products) =>
-            res.json({
+            /*res.json({
                 data: products
-            })
+            })*/
+            res.render('index.ejs', {products})
         )
         .catch((error) =>
             res.json({
@@ -19,18 +20,17 @@ productsController.getAll = (req, res) => {
 };
 
 productsController.getOne = (req, res) => {
-    productsDao.getOne(req.params.barcode) // ? Argumento de llamada a la función getOne
+    productsDao.getOne(req.params.barcode)
         .then((product) => {
-            if (product != null)
-                res.json({
-                    data: product
-                });
-            else
+            if (product != null) {
+                res.render('edit.ejs', { product });
+            } else {
                 res.json({
                     data: {
                         message: "Product not found"
                     },
                 });
+            }
         })
         .catch((error) =>
             res.json({
@@ -41,15 +41,17 @@ productsController.getOne = (req, res) => {
         );
 };
 
+
 productsController.insert = (req, res) => {
     productsDao.insert(req.body)
         .then((response) =>
-            res.json({
+            /*res.json({
                 data: {
                     message: "Product inserted successfully",
                     product: response
                 }
-            })
+            })*/
+            res.redirect('/groceries/products/getAll')
         )
         .catch((error) =>
             res.json({
@@ -62,32 +64,27 @@ productsController.insert = (req, res) => {
 
 productsController.updateOne = (req, res) => {
     productsDao.updateOne(req.body, req.params.barcode)
-    .then((result) => {
-        res.json({
-            data: {
-                message: "Product updated successfully",
-                result: result
-            }
-        })
+    .then(() => {
+        res.redirect("/groceries/products/getAll");
     })
     .catch((error) => {
         res.json({
-            data: {
-                error: error
-            }
-        })
+            data: { error: error }
+        });
     });
 };
+
 
 productsController.deleteOne = (req, res) => {
     productsDao.deleteOne(req.params.barcode)
     .then((productDelete) => {
-        res.json({
+        /*res.json({
             data: {
                 message: "Product deleted successfully",
                 product_deleted: productDelete
             }
-        })
+        })*/
+        res.redirect('/groceries/products/getAll')
     })
     .catch((error) => {
         res.json({
