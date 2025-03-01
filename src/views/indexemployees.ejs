@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>Groceries</title>
+</head>
+<body>
+    <div data-role="page" id="employees">
+        <div data-role="header" style="overflow:hidden;">
+            <h1>Abarrotes app</h1>
+             <a href="#" data-icon="gear" class="ui-btn-right">Options</a>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="/groceries/products/getAll">Productos</a></li>
+                    <li><a href="/groceries/employees/getAll">Empleados</a></li>
+                    <li><a href="/groceries/customers/getAll">Clientes</a></li>
+                </ul>
+            </div>
+        </div>
+        <div role="main" class="ui-content">
+            <form action="/groceries/employees/insert" method="POST">
+                <div class="card">
+                    <div class="card-body">
+                        <label for="txt_employee_number">Numero de empleado</label>
+                        <input type="text" name="employee_number" id="txt_employee_number">
+                        <label for="txt_name">Nombre</label>
+                        <input type="text" name="name" id="txt_name">
+                        <label for="txt_lastname">apellido</label>
+                        <input type="text" name="lastname" id="txt_lastname">
+                        <label for="txt_age">Edad</label>
+                        <input type="number" name="age" id="txt_age">
+                        <label for="txt_email">Correo</label>
+                        <input type="text" name="email" id="txt_email">
+                        <label for="txt_salary">salario</label>
+                        <input type="number" name="salary" id="txt_salary">
+                        <button class="ui-btn ui-shadow">guardar</button>
+                    </div>
+                </div>
+            </form>
+                <ul data-role="listview" data-filter="true" data-filter-placeholder="Search Employees..." data-inset="true">
+                    <% employees.forEach((employees) =>{ %>
+                        <div data-role="collapsible" data-content-theme="false">
+                            <h4><%= employees.name %></h4>
+                            <p>Numero de empleado: <%= employees.employee_number %></p>
+                            <p>Nombre: <%= employees.name %></p>
+                            <p>Apellido: <%= employees.lastname %></p>
+                            <p>Edad: <%= employees.age %></p>
+                            <p>Correo: <%= employees.email %></p>
+                            <p>Salario: <%= employees.salary %></p>
+                            <a href="/groceries/employees/getOne/<%= employees.employee_number %>" class="ui-btn ui-icon-edit ui-btn-icon-bottom">Editar</a>
+                            <a href="/groceries/employees/deleteOne/<%= employees.employee_number %>" class="ui-btn ui-icon-delete ui-btn-icon-bottom">Eliminar</a>
+                        </div>
+                    <% }) %>
+                </ul>
+        </div>
+    </div>
+</body>
+</html>

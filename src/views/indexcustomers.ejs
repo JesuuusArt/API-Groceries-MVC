@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>Groceries</title>
+</head>
+<body>
+    <div data-role="page" id="customers">
+        <div data-role="header" style="overflow:hidden;">
+            <h1>Abarrotes app</h1>
+             <a href="#" data-icon="gear" class="ui-btn-right">Options</a>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="/groceries/products/getAll">Productos</a></li>
+                    <li><a href="/groceries/employees/getAll">Empleados</a></li>
+                    <li><a href="/groceries/customers/getAll">Clientes</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div role="main" class="ui-content">
+            <form action="/groceries/customers/insert" method="POST">
+                <div class="card">
+                    <div class="card-body">
+                        <label for="txt_customer_number">Numero de cliente</label>
+                        <input type="text" name="customer_number" id="txt_customer_number">
+                        <label for="txt_name">Nombre</label>
+                        <input type="text" name="name" id="txt_name">
+                        <label for="txt_lastname">apellido</label>
+                        <input type="text" name="lastname" id="txt_lastname">
+                        <label for="txt_age">Edad</label>
+                        <input type="text" name="age" id="txt_age">
+                        <label for="txt_email">Correo</label>
+                        <input type="text" name="email" id="txt_email">
+                        <button class="ui-btn ui-shadow">guardar</button>
+                    </div>
+                </div>
+            </form>
+                <ul data-role="listview" data-filter="true" data-filter-placeholder="Search Products..." data-inset="true">
+                    <% customers.forEach((customers) =>{ %>
+                        <div data-role="collapsible" data-content-theme="false">
+                            <h4><%= customers.name %></h4>
+                            <p>Numero de cliente: <%= customers.customer_number %></p>
+                            <p>Nombre: <%= customers.name %></p>
+                            <p>Apellido: <%= customers.lastname %></p>
+                            <p>Edad: <%= customers.age %></p>
+                            <p>Correo: <%= customers.email %></p>
+                            <a href="/groceries/customers/getOne/<%= customers.customer_number %>" class="ui-btn ui-icon-edit ui-btn-icon-bottom">Editar</a>
+                            <a href="/groceries/customers/deleteOne/<%= customers.customer_number %>" class="ui-btn ui-icon-delete ui-btn-icon-bottom">Eliminar</a>
+                        </div>
+                    <% }) %>
+                </ul>
+        </div>
+    </div>
+</body>
+</html>

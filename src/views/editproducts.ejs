@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>Groceries</title>
+</head>
+<body>
+    <div data-role="page" id="products">
+        <div data-role="header" style="overflow:hidden;">
+            <h1>Abarrotes app</h1>
+             <a href="#" data-icon="gear" class="ui-btn-right">Options</a>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="/groceries/products/getAll">Productos</a></li>
+                    <li><a href="/groceries/employees/getAll">Empleados</a></li>
+                    <li><a href="/groceries/customers/getAll">Clientes</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div role="main" class="ui-content">
+            <form action="/groceries/products/updateOne/<%= products.barcode %>" method="POST">
+                <div class="card">
+                    <div class="card-body">
+                        <label for="txt_barcode">Codigo de barras</label>
+                        <input type="text" name="barcode" id="txt_barcode" value="<%= products.barcode %>">
+                        <label for="txt_description">Descripcion</label>
+                        <input type="text" name="description" id="txt_description" value="<%= products.description %>">
+                        <label for="txt_brand">Marca</label>
+                        <input type="text" name="brand" id="txt_brand" value="<%= products.brand %>">
+                        <label for="txt_price">Precio de venta</label>
+                        <input type="number" name="price" id="txt_price" value="<%= products.price %>">
+                        <label for="txt_cost">Precio de compra</label>
+                        <input type="number" name="cost" id="txt_cost" value="<%= products.cost %>">
+                        <label for="txt_expired_date">Fecha de caducidad</label>
+                        <input type="date" name="expired_date" id="txt_expired_date" value="<%= products.expired_date %>">
+                        <label for="txt_stock">Existencia</label>
+                        <input type="number" name="stock" id="txt_stock" value="<%= products.stock %>">
+                        <button class="ui-btn ui-shadow">Actualizar</button>
+                    </div>
+                </div>
+            </form>     
+        </div>
+        <div data-role="footer">
+        </div>
+    </div>
+</body>
+</html>
